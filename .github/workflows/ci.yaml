@@ -29,7 +29,16 @@ jobs:
       - name: Compile C application
         run: gcc expo/expo.c -lm -o sdo-expo
 
-      # TASK 1.1: Add your  test step here.
+      - name: Run functional test
+  
+    run: |
+      ./sdo-expo 2 10 > output.txt
+      if ! grep -q "1024" output.txt; then
+        echo "Functional test failed: expected 1024, got $(cat output.txt)"
+        exit 1
+      fi
+    
+    
 
   # ============================================================
   # TASK 1.2 — THE UNPROTECTED DOCKER BUILD
@@ -49,6 +58,8 @@ jobs:
   task1-docker-build:
     # TASK 1.2: Add the required job dependency here.
 
+    depends-on: task1-test
+    
     runs-on: ubuntu-latest
 
     steps:
