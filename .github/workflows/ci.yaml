@@ -29,7 +29,7 @@ jobs:
       - name: Compile C application
         run: gcc expo/expo.c -lm -o sdo-expo
 
-      # TASK 1.1: Add your functional test step here.
+      # TASK 1.1: Add your  test step here.
 
   # ============================================================
   # TASK 1.2 — THE UNPROTECTED DOCKER BUILD
